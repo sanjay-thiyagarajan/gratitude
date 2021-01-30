@@ -123,26 +123,40 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 billsTimePicker.setVisibility(View.VISIBLE);
+                groceryTimePicker.setVisibility(View.GONE);
+                emergencyTimePicker.setVisibility(View.GONE);
+                foodTimePicker.setVisibility(View.GONE);
+
             }
         });
         groceryTimeTxt.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-                groceryTimePicker.setVisibility(View.VISIBLE);
+                billsTimePicker.setVisibility(View.VISIBLE);
+                groceryTimePicker.setVisibility(View.GONE);
+                emergencyTimePicker.setVisibility(View.GONE);
+                foodTimePicker.setVisibility(View.GONE);
+
             }
         });
         emergencyTimeTxt.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
+                billsTimePicker.setVisibility(View.GONE);
+                groceryTimePicker.setVisibility(View.GONE);
                 emergencyTimePicker.setVisibility(View.VISIBLE);
+                foodTimePicker.setVisibility(View.GONE);
             }
         });
         orderTimeTxt.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
+                billsTimePicker.setVisibility(View.GONE);
+                groceryTimePicker.setVisibility(View.GONE);
+                emergencyTimePicker.setVisibility(View.GONE);
                 foodTimePicker.setVisibility(View.VISIBLE);
             }
         });
