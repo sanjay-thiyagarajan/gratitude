@@ -60,7 +60,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
     private Button SaveButton, button_location;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firestore;
-    private String currentUserID, profileURL, address;
+    private String currentUserID, profileURL, address, latlon;
     private Uri imageUri;
     private StorageReference profileStoreRef;
 
@@ -238,6 +238,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
             hashMap.put("address", address);
             hashMap.put("email",email);
             hashMap.put("profile_picture", profileURL);
+            hashMap.put("latlon",latlon);
 
             firestore.collection("Users").document(currentUserID).set(hashMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -272,7 +273,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
         try {
             Geocoder gecoder = new Geocoder(SetupActivity.this, Locale.getDefault());
             List<Address> addresses = gecoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-
+            latlon = String.valueOf(location.getLatitude()) + "," + String.valueOf(location.getLongitude());
             address = addresses.get(0).getAddressLine(0);
 
 
