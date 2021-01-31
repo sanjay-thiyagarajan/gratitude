@@ -43,7 +43,7 @@ public class Dashboard extends AppCompatActivity {
     private RelativeLayout helpSeekerSwitch, helperSwitch;
     private LinearLayout helperLayout, helpSeekerLayout, profileLayout;
     private LinearLayout billsFormLayout, groceryFormLayout, emergencyFormLayout, orderFormLayout;
-    private LinearLayout billsLayout;
+    private LinearLayout billsLayout, groceryLayout, emergencyLayout, orderLayout;
     private TextView helpSeekerTxt, helperTxt, usernameTxt, billsTimeTxt,emergencyTimeTxt, groceryTimeTxt,orderTimeTxt;
     private String user_type, currentUserID, fullname, dest_time, address;
     private FirebaseAuth mAuth;
@@ -111,6 +111,7 @@ public class Dashboard extends AppCompatActivity {
         groceryET = (EditText) findViewById(R.id.desc_grocery);
         orderET = (EditText) findViewById(R.id.desc_order);
         emergencyET = (EditText) findViewById(R.id.desc_emergency);
+        billsFormLayout = (LinearLayout) findViewById(R.id.bills_form_llt);
 
         groceryFormLayout = (LinearLayout)findViewById(R.id.grocery_form_llt);
         emergencyFormLayout = (LinearLayout)findViewById(R.id.emergency_form_llt);
@@ -122,6 +123,41 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 billsTimePicker.setVisibility(View.VISIBLE);
+                groceryTimePicker.setVisibility(View.GONE);
+                emergencyTimePicker.setVisibility(View.GONE);
+                foodTimePicker.setVisibility(View.GONE);
+
+            }
+        });
+        groceryTimeTxt.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                billsTimePicker.setVisibility(View.VISIBLE);
+                groceryTimePicker.setVisibility(View.GONE);
+                emergencyTimePicker.setVisibility(View.GONE);
+                foodTimePicker.setVisibility(View.GONE);
+
+            }
+        });
+        emergencyTimeTxt.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                billsTimePicker.setVisibility(View.GONE);
+                groceryTimePicker.setVisibility(View.GONE);
+                emergencyTimePicker.setVisibility(View.VISIBLE);
+                foodTimePicker.setVisibility(View.GONE);
+            }
+        });
+        orderTimeTxt.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                billsTimePicker.setVisibility(View.GONE);
+                groceryTimePicker.setVisibility(View.GONE);
+                emergencyTimePicker.setVisibility(View.GONE);
+                foodTimePicker.setVisibility(View.VISIBLE);
             }
         });
 
@@ -135,8 +171,11 @@ public class Dashboard extends AppCompatActivity {
 
 
         billsLayout = (LinearLayout)findViewById(R.id.bills_llt);
+        groceryLayout = (LinearLayout)findViewById(R.id.grocery_llt);
+        emergencyLayout = (LinearLayout)findViewById(R.id.emergency_llt);
+        orderLayout = (LinearLayout)findViewById(R.id.food_llt);
 
-        billsFormLayout = (LinearLayout) findViewById(R.id.bills_form_llt);
+
 
         billsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,7 +186,7 @@ public class Dashboard extends AppCompatActivity {
                 orderFormLayout.setVisibility(View.GONE);
             }
         });
-        orderFormLayout.setOnClickListener(new View.OnClickListener() {
+        orderLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 billsFormLayout.setVisibility(View.GONE);
@@ -156,7 +195,7 @@ public class Dashboard extends AppCompatActivity {
                 orderFormLayout.setVisibility(View.VISIBLE);
             }
         });
-        groceryFormLayout.setOnClickListener(new View.OnClickListener() {
+        groceryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 billsFormLayout.setVisibility(View.GONE);
@@ -165,7 +204,7 @@ public class Dashboard extends AppCompatActivity {
                 orderFormLayout.setVisibility(View.GONE);
             }
         });
-        emergencyFormLayout.setOnClickListener(new View.OnClickListener() {
+        emergencyLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 billsFormLayout.setVisibility(View.GONE);
