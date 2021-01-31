@@ -273,7 +273,7 @@ public class SetupActivity extends AppCompatActivity implements LocationListener
         try {
             Geocoder gecoder = new Geocoder(SetupActivity.this, Locale.getDefault());
             List<Address> addresses = gecoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-            latlon = "geo:" + String.valueOf(location.getLatitude()) + "," + String.valueOf(location.getLongitude());
+            latlon = String.valueOf(location.getLatitude()) + "," + String.valueOf(location.getLongitude());
             address = addresses.get(0).getAddressLine(0);
 
 
