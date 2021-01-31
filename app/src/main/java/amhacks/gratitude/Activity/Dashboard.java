@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -45,7 +46,7 @@ public class Dashboard extends AppCompatActivity {
     private LinearLayout billsFormLayout, groceryFormLayout, emergencyFormLayout, orderFormLayout;
     private LinearLayout billsLayout, groceryLayout, emergencyLayout, orderLayout;
     private TextView helpSeekerTxt, helperTxt, usernameTxt, billsTimeTxt,emergencyTimeTxt, groceryTimeTxt,orderTimeTxt;
-    private String user_type, currentUserID, fullname, dest_time, address;
+    private String user_type, currentUserID, fullname, dest_time, address, latlon_target;
     private FirebaseAuth mAuth;
     private CircleImageView profileView;
     private FirebaseFirestore firestore;
@@ -468,6 +469,21 @@ public class Dashboard extends AppCompatActivity {
             public RequestsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.requests_layout, parent, false);
 
+                view.findViewById(R.id.requests_help_button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (latlon_target != null)
+                        {
+                            Uri mapUri = Uri.parse(latlon_target);
+                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
+                            mapIntent.setPackage("com.google.android.apps.maps");
+                            if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                                startActivity(mapIntent);
+                            }
+                        }
+                    }
+                });
+
                 return new RequestsViewHolder(view);
             }
 
@@ -478,6 +494,7 @@ public class Dashboard extends AppCompatActivity {
                 holder.setTime(model.getTime());
                 holder.setPoster_location(model.getPoster_location());
                 holder.setType(model.getType());
+                latlon_target = model.getLatlon();
 
                 String poster_id = model.getPoster();
 
